@@ -65,6 +65,10 @@ func main() {
 		err = ca(args[1:], os.Stdout, os.Stderr)
 	case "keygen":
 		err = keygen(args[1:], os.Stdout, os.Stderr)
+	case "privkey":
+		err = privkey(args[1:], os.Stdout, os.Stderr)
+	case "pubkey":
+		err = pubkey(args[1:], os.Stdout, os.Stderr)
 	case "sign":
 		err = signCert(args[1:], os.Stdout, os.Stderr)
 	case "print":
@@ -98,6 +102,10 @@ func handleError(mode string, e error, out io.Writer) int {
 			caHelp(out)
 		case "keygen":
 			keygenHelp(out)
+		case "privkey":
+			privkeyHelp(out)
+		case "pubkey":
+			pubkeyHelp(out)
 		case "sign":
 			signHelp(out)
 		case "print":
@@ -124,6 +132,8 @@ func help(err string, out io.Writer) {
 	fmt.Fprintln(out, "  Modes:")
 	fmt.Fprintln(out, "    "+caSummary())
 	fmt.Fprintln(out, "    "+keygenSummary())
+	fmt.Fprintln(out, "    "+privkeySummary())
+	fmt.Fprintln(out, "    "+pubkeySummary())
 	fmt.Fprintln(out, "    "+signSummary())
 	fmt.Fprintln(out, "    "+printSummary())
 	fmt.Fprintln(out, "    "+verifySummary())
